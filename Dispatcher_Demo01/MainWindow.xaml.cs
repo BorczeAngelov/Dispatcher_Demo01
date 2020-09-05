@@ -40,7 +40,7 @@ namespace Dispatcher_Demo01
             AsyncButtonEventHandlerOperation(AsyncButton3Seconds, () => Thread.Sleep(3000));
         }
 
-        private  void AsyncButton5Seconds_Click(object sender, RoutedEventArgs e)
+        private void AsyncButton5Seconds_Click(object sender, RoutedEventArgs e)
         {
             AsyncButtonEventHandlerOperation(AsyncButton5Seconds, () => Thread.Sleep(5000));
         }
@@ -88,8 +88,11 @@ namespace Dispatcher_Demo01
             Button button,
             Action buttonOperation)
         {
-            button.Background = Brushes.Green;
-            return Task.Run(() => buttonOperation.Invoke());
+            return Task.Run(() =>
+                {
+                    button.Dispatcher.Invoke(() => button.Background = Brushes.Green);
+                    buttonOperation.Invoke();
+                });
         }
 
 
