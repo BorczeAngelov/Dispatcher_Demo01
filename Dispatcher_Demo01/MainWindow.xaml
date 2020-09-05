@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         MinWidth="250"
-        MinHeight="250">
+        MinHeight="250"
+        Width="1000"
+        Height="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -21,16 +23,19 @@
             <Button x:Name="Button1Seconds" 
                     Content="1 Seconds"
                     Click="Button1Seconds_Click"
+                    Background="AliceBlue"
                     Margin="5"/>
             
             <Button x:Name="Button3Seconds"
                     Content="3 Seconds"
                     Click="Button3Seconds_Click"
+                    Background="AliceBlue"
                     Margin="5" />
             
             <Button x:Name="Button5Seconds"
                     Content="5 Seconds"
                     Click="Button5Seconds_Click"
+                    Background="AliceBlue"
                     Margin="5" />
         </StackPanel>
 
