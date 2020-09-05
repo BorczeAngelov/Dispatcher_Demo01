@@ -16,35 +16,23 @@ namespace Dispatcher_Demo01
 
         private void Button1Seconds_Click(object sender, RoutedEventArgs e)
         {
-            LogBegin(nameof(Button1Seconds));
-            Button1Seconds.Background = Brushes.Yellow;
-
-            ExecuteButtonOperation(Button1Seconds, () => Thread.Sleep(1000));
-
-            LogEnd(nameof(Button1Seconds));
-            Button1Seconds.Background = Brushes.AliceBlue;
+            SyncButtonEventHandlerOperation(
+                Button1Seconds,
+                () => Thread.Sleep(millisecondsTimeout: 1000));
         }
 
         private void Button3Seconds_Click(object sender, RoutedEventArgs e)
         {
-            LogBegin(nameof(Button3Seconds));
-            Button3Seconds.Background = Brushes.Yellow;
-
-            ExecuteButtonOperation(Button3Seconds, () => Thread.Sleep(3000));
-
-            LogEnd(nameof(Button3Seconds));
-            Button3Seconds.Background = Brushes.AliceBlue;
+            SyncButtonEventHandlerOperation(
+                Button3Seconds,
+                () => Thread.Sleep(millisecondsTimeout: 3000));
         }
 
         private void Button5Seconds_Click(object sender, RoutedEventArgs e)
         {
-            LogBegin(nameof(Button5Seconds));
-            Button5Seconds.Background = Brushes.Yellow;
-
-            ExecuteButtonOperation(Button5Seconds, () => Thread.Sleep(5000));
-
-            LogEnd(nameof(Button5Seconds));
-            Button5Seconds.Background = Brushes.AliceBlue;
+            SyncButtonEventHandlerOperation(
+                Button5Seconds,
+                () => Thread.Sleep(millisecondsTimeout: 5000));
         }
 
 
@@ -79,6 +67,22 @@ namespace Dispatcher_Demo01
 
             LogEnd(nameof(AsyncButton5Seconds));
             AsyncButton5Seconds.Background = Brushes.AliceBlue;
+        }
+
+
+        private void SyncButtonEventHandlerOperation(
+            Button button,
+            Action buttonOperation)
+        {
+            var buttonName = button.Name;
+
+            LogBegin(buttonName);
+            button.Background = Brushes.Yellow;
+
+            ExecuteButtonOperation(button, buttonOperation);
+
+            LogEnd(buttonName);
+            button.Background = Brushes.AliceBlue;
         }
 
 
