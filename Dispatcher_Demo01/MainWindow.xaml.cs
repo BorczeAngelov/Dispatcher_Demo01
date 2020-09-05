@@ -16,59 +16,34 @@ namespace Dispatcher_Demo01
 
         private void Button1Seconds_Click(object sender, RoutedEventArgs e)
         {
-            SyncButtonEventHandlerOperation(
-                Button1Seconds,
-                () => Thread.Sleep(millisecondsTimeout: 1000));
+            SyncButtonEventHandlerOperation(Button1Seconds, () => Thread.Sleep(millisecondsTimeout: 1000));
         }
 
         private void Button3Seconds_Click(object sender, RoutedEventArgs e)
         {
-            SyncButtonEventHandlerOperation(
-                Button3Seconds,
-                () => Thread.Sleep(millisecondsTimeout: 3000));
+            SyncButtonEventHandlerOperation(Button3Seconds, () => Thread.Sleep(millisecondsTimeout: 3000));
         }
 
         private void Button5Seconds_Click(object sender, RoutedEventArgs e)
         {
-            SyncButtonEventHandlerOperation(
-                Button5Seconds,
-                () => Thread.Sleep(millisecondsTimeout: 5000));
+            SyncButtonEventHandlerOperation(Button5Seconds, () => Thread.Sleep(millisecondsTimeout: 5000));
         }
 
 
-        private async void AsyncButton1Seconds_Click(object sender, RoutedEventArgs e)
+        private void AsyncButton1Seconds_Click(object sender, RoutedEventArgs e)
         {
-            LogBegin(nameof(AsyncButton1Seconds));
-            AsyncButton1Seconds.Background = Brushes.Yellow;
-
-            await AsyncExecuteButtonOperation(AsyncButton1Seconds, () => Thread.Sleep(1000));
-
-            LogEnd(nameof(AsyncButton1Seconds));
-            AsyncButton1Seconds.Background = Brushes.AliceBlue;
+            AsyncButtonEventHandlerOperation(AsyncButton1Seconds, () => Thread.Sleep(1000));
         }
 
-        private async void AsyncButton3Seconds_Click(object sender, RoutedEventArgs e)
+        private void AsyncButton3Seconds_Click(object sender, RoutedEventArgs e)
         {
-            LogBegin(nameof(AsyncButton3Seconds));
-            AsyncButton3Seconds.Background = Brushes.Yellow;
-
-            await AsyncExecuteButtonOperation(AsyncButton3Seconds, () => Thread.Sleep(3000));
-
-            LogEnd(nameof(AsyncButton3Seconds));
-            AsyncButton3Seconds.Background = Brushes.AliceBlue;
+            AsyncButtonEventHandlerOperation(AsyncButton3Seconds, () => Thread.Sleep(3000));
         }
 
-        private async void AsyncButton5Seconds_Click(object sender, RoutedEventArgs e)
+        private  void AsyncButton5Seconds_Click(object sender, RoutedEventArgs e)
         {
-            LogBegin(nameof(AsyncButton5Seconds));
-            AsyncButton5Seconds.Background = Brushes.Yellow;
-
-            await AsyncExecuteButtonOperation(AsyncButton5Seconds, () => Thread.Sleep(5000));
-
-            LogEnd(nameof(AsyncButton5Seconds));
-            AsyncButton5Seconds.Background = Brushes.AliceBlue;
+            AsyncButtonEventHandlerOperation(AsyncButton5Seconds, () => Thread.Sleep(5000));
         }
-
 
         private void SyncButtonEventHandlerOperation(
             Button button,
@@ -80,6 +55,21 @@ namespace Dispatcher_Demo01
             button.Background = Brushes.Yellow;
 
             ExecuteButtonOperation(button, buttonOperation);
+
+            LogEnd(buttonName);
+            button.Background = Brushes.AliceBlue;
+        }
+
+        private async void AsyncButtonEventHandlerOperation(
+            Button button,
+            Action buttonOperation)
+        {
+            var buttonName = button.Name;
+
+            LogBegin(buttonName);
+            button.Background = Brushes.Yellow;
+
+            await AsyncExecuteButtonOperation(button, buttonOperation);
 
             LogEnd(buttonName);
             button.Background = Brushes.AliceBlue;
