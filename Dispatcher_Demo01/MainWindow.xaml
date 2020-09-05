@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dispatcher_Demo01"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="MainWindow"
         MinWidth="250"
         MinHeight="250"
         Width="1000"
@@ -16,28 +16,59 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Stretch">
-            
-            <Button x:Name="Button1Seconds" 
-                    Content="1 Seconds"
-                    Click="Button1Seconds_Click"
-                    Background="AliceBlue"
-                    Margin="5"/>
-            
-            <Button x:Name="Button3Seconds"
-                    Content="3 Seconds"
-                    Click="Button3Seconds_Click"
-                    Background="AliceBlue"
-                    Margin="5" />
-            
-            <Button x:Name="Button5Seconds"
-                    Content="5 Seconds"
-                    Click="Button5Seconds_Click"
-                    Background="AliceBlue"
-                    Margin="5" />
-        </StackPanel>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch">
+
+                <Button x:Name="Button1Seconds"
+                        Content="1 Seconds"
+                        Click="Button1Seconds_Click"
+                        Background="AliceBlue"
+                        Margin="5" />
+
+                <Button x:Name="Button3Seconds"
+                        Content="3 Seconds"
+                        Click="Button3Seconds_Click"
+                        Background="AliceBlue"
+                        Margin="5" />
+
+                <Button x:Name="Button5Seconds"
+                        Content="5 Seconds"
+                        Click="Button5Seconds_Click"
+                        Background="AliceBlue"
+                        Margin="5" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch">
+
+                <Button x:Name="AsyncButton1Seconds"
+                        Content="Async 1 Seconds"
+                        Click="AsyncButton1Seconds_Click"
+                        Background="AliceBlue"
+                        Margin="5" />
+
+                <Button x:Name="AsyncButton3Seconds"
+                        Content="Async 3 Seconds"
+                        Click="AsyncButton3Seconds_Click"
+                        Background="AliceBlue"
+                        Margin="5" />
+
+                <Button x:Name="AsyncButton5Seconds"
+                        Content="Async 5 Seconds"
+                        Click="AsyncButton5Seconds_Click"
+                        Background="AliceBlue"
+                        Margin="5" />
+            </StackPanel>
+
+        </Grid>        
 
         <StackPanel Grid.Column="1">
             <ListView x:Name="LogList" />
