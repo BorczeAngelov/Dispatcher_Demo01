@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Dispatcher_Demo01
@@ -17,7 +18,7 @@ namespace Dispatcher_Demo01
             LogBegin(nameof(Button1Seconds));
             Button1Seconds.Background = Brushes.Yellow;
 
-            Thread.Sleep(1000);
+            ExecuteButtonOperation(Button1Seconds, () => Thread.Sleep(1000));
 
             LogEnd(nameof(Button1Seconds));
             Button1Seconds.Background = Brushes.AliceBlue;
@@ -28,7 +29,7 @@ namespace Dispatcher_Demo01
             LogBegin(nameof(Button3Seconds));
             Button3Seconds.Background = Brushes.Yellow;
 
-            Thread.Sleep(3000);
+            ExecuteButtonOperation(Button3Seconds, () => Thread.Sleep(3000));
 
             LogEnd(nameof(Button3Seconds));
             Button3Seconds.Background = Brushes.AliceBlue;
@@ -39,10 +40,18 @@ namespace Dispatcher_Demo01
             LogBegin(nameof(Button5Seconds));
             Button5Seconds.Background = Brushes.Yellow;
 
-            Thread.Sleep(5000);
+            ExecuteButtonOperation(Button5Seconds, () => Thread.Sleep(5000));
 
             LogEnd(nameof(Button5Seconds));
             Button5Seconds.Background = Brushes.AliceBlue;
+        }
+
+        private void ExecuteButtonOperation(
+            Button button,
+            Action buttonOperation)
+        {
+            button.Background = Brushes.Green;
+            buttonOperation.Invoke();
         }
 
         private void LogBegin(string buttonName)
